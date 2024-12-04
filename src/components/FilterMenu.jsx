@@ -8,30 +8,32 @@ function FilterMenu({ headers }) {
   return (
     <div className="filter-menu">
       <h2>Filter Menu</h2>
-      <div className="headers">
-        <h3>CSV Data Headers</h3>
-        <ul>
-          {headers.map((header, index) => (
-            <li key={index}>{header}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="filter-blocks">
-        <div className="filter-block">
-          <label htmlFor="y-axis">Y-Axis:</label>
-          <select id="y-axis" value={yAxis} onChange={(e) => setYAxis(e.target.value)}>
+      <div className="filter-content">
+        <div className="headers">
+          <h3>CSV Data Headers</h3>
+          <ul>
             {headers.map((header, index) => (
-              <option key={index} value={header}>{header}</option>
+              <li key={index}>{header}</li>
             ))}
-          </select>
+          </ul>
         </div>
-        <div className="filter-block">
-          <label htmlFor="x-axis">X-Axis:</label>
-          <select id="x-axis" value={xAxis} onChange={(e) => setXAxis(e.target.value)}>
-            {headers.map((header, index) => (
-              <option key={index} value={header}>{header}</option>
-            ))}
-          </select>
+        <div className="filter-blocks">
+          <div className="filter-block">
+            <label htmlFor="y-axis">Y-Axis:</label>
+            <select id="y-axis" value={yAxis} onChange={(e) => setYAxis(e.target.value)}>
+              {headers.map((header, index) => (
+                <option key={index} value={header}>{header}</option>
+              ))}
+            </select>
+          </div>
+          <div className="filter-block">
+            <label htmlFor="x-axis">X-Axis:</label>
+            <select id="x-axis" value={xAxis} onChange={(e) => setXAxis(e.target.value)}>
+              {headers.map((header, index) => (
+                <option key={index} value={header}>{header}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
     </div>
