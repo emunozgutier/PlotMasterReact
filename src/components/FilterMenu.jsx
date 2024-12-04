@@ -1,9 +1,32 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSortAlphaDown, faBan } from '@fortawesome/free-solid-svg-icons';
 
 function FilterMenu({ headers }) {
-  const [yAxis, setYAxis] = useState('');
+  const [yAxis, setYAxis] = useState([]);
   const [xAxis, setXAxis] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isAlphabetical, setIsAlphabetical] = useState(false);
+  const [selectedBlock, setSelectedBlock] = useState(null);
+
+  const filteredHeaders = headers.filter(header =>
+    header.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const displayedHeaders = isAlphabetical
+    ? [...filteredHeaders].sort()
+    : filteredHeaders;
+
+  const handleHeaderClick = (header) => {
+    if (selectedBlock === 'y-axis') {
+      if (!yAxis.includes(header)) {
+        setYAxis([...yAxis, header]);
+      }
+    } else if (selectedBlock === 'x-axis') {
+      setXAxis(header);
+    }
+  };
 
   return (
     <div className="filter-menu">
@@ -11,27 +34,40 @@ function FilterMenu({ headers }) {
       <div className="filter-content">
         <div className="headers">
           <h3>CSV Data Headers</h3>
+          <input
+            type="text"
+            placeholder="Search headers..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button onClick={() => setIsAlphabetical(!isAlphabetical)}>
+            <FontAwesomeIcon icon={isAlphabetical ? faBan : faSortAlphaDown} />
+          </button>
           <ul>
-            {headers.map((header, index) => (
-              <li key={index}>{header}</li>
+            {displayedHeaders.map((header, index) => (
+              <li key={index} onClick={() => handleHeaderClick(header)}>{header}</li>
             ))}
           </ul>
         </div>
         <div className="filter-blocks">
-          <div className="filter-block">
+          <div
+            className={`filter-block ${selectedBlock === 'y-axis' ? 'selected' : ''}`}
+            onClick={() => setSelectedBlock('y-axis')}
+          >
             <label htmlFor="y-axis">Y-Axis:</label>
-            <select id="y-axis" value={yAxis} onChange={(e) => setYAxis(e.target.value)}>
-              {headers.map((header, index) => (
+            <select id="y-axis" value={yAxis} multiple>
+              {yAxis.map((header, index) => (
                 <option key={index} value={header}>{header}</option>
               ))}
             </select>
           </div>
-          <div className="filter-block">
+          <div
+            className={`filter-block ${selectedBlock === 'x-axis' ? 'selected' : ''}`}
+            onClick={() => setSelectedBlock('x-axis')}
+          >
             <label htmlFor="x-axis">X-Axis:</label>
-            <select id="x-axis" value={xAxis} onChange={(e) => setXAxis(e.target.value)}>
-              {headers.map((header, index) => (
-                <option key={index} value={header}>{header}</option>
-              ))}
+            <select id="x-axis" value={xAxis}>
+              {xAxis && <option value={xAxis}>{xAxis}</option>}
             </select>
           </div>
         </div>
