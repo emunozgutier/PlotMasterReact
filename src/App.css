@@ -1,0 +1,27 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.filter-menu {
+  width: 30%;
+  padding: 1rem;
+  border-right: 1px solid #dee2e6;
+}
+
+.data-display-table {
+  width: 70%;
+  padding: 1rem;
+}
