@@ -7,7 +7,9 @@ class TabDataFrame {
 
   loadData() {
     const rows = this.fileContent.split('\n').map(row => row.split(','));
-    this.dataFrame = new window.dfd.DataFrame(rows.slice(1), { columns: rows[0] });
+    const headers = rows[0];
+    const data = rows.slice(1);
+    this.dataFrame = new window.dfd.DataFrame(data, { columns: headers });
   }
 
   getRawData() {
