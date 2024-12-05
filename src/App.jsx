@@ -7,21 +7,23 @@ import TabDataFrame from './components/TabDataFrame';
 
 function App() {
   const [headers, setHeaders] = useState([]);
-  const [fileContent, setFileContent] = useState('');
+  const [file, setFile] = useState(null);
   const [xAxisHeaders, setXAxisHeaders] = useState([]);
   const [yAxisHeaders, setYAxisHeaders] = useState([]);
   const [tabDataFrame, setTabDataFrame] = useState(null);
 
-  const handleFileContentChange = (content) => {
-    const dataFrame = new TabDataFrame(content);
+  const handleFileNameChange = (file) => {
+    const dataFrame = new TabDataFrame(file);
     setTabDataFrame(dataFrame);
-    setHeaders(dataFrame.getRawData().columns);
+    dataFrame.loadData().then(() => {
+      setHeaders(dataFrame.getRawData().columns);
+    });
   };
 
   return (
     <div className="app-container">
       <header>
-        <BrowseFile onFileContentChange={handleFileContentChange} />
+        <BrowseFile onFileNameChange={handleFileNameChange} />
       </header>
       <div className="main-content">
         <FilterMenu headers={headers} onXAxisChange={setXAxisHeaders} onYAxisChange={setYAxisHeaders} />

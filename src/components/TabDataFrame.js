@@ -1,16 +1,38 @@
 class TabDataFrame {
-  constructor(fileContent) {
-    this.fileContent = fileContent;
-    this.dataFrame = null;
-    this.loadData();
+  constructor(file) {
+    this.file = file;
+    this.reader = new FileReader();
+    this.reader.readAsText(file);
+    this.file_text = this.reader.result;
+    this.file_json = this.textToJson(this.file_text);
+    this.df = this.jsonToDataFrame(this.file_json);
+    this.df.print()
   }
 
-  loadData() {
-    const rows = this.fileContent.split('\n').map(row => row.split(','));
-    const headers = rows[0];
-    const data = rows.slice(1);
-    this.dataFrame = new window.dfd.DataFrame(data, { columns: headers });
+  textToJson(text) {
+    // Remove control characters
+    const sanitizedText = text.replace(/[\x00-\x1F\x7F]/g, '');
+    const rows = sanitizedText.split('\n');
+    const headers = rows[0].split(',');
+    const data = rows.slice(1).map(row => {
+      const rowData = row.split(',');
+      return headers.reduce((acc, header, index) => {
+        acc[header] = rowData[index];
+        return acc;
+      }, {});
+    });
+
+    return { headers, data };
   }
+
+
+
+
+  jsonToDataFrame(json) {
+    const { headers, data } = json;
+    return new dfd.DataFrame(data, { columns: headers });
+  }
+
 
   getRawData() {
     return this.dataFrame;

@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types';
 
-function BrowseFile({ onFileContentChange }) {
+function BrowseFile({ onFileNameChange }) {
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      onFileContentChange(e.target.result);
-    };
-    reader.readAsText(file);
+    onFileNameChange(file);
   };
 
   return (
@@ -18,7 +14,7 @@ function BrowseFile({ onFileContentChange }) {
 }
 
 BrowseFile.propTypes = {
-  onFileContentChange: PropTypes.func.isRequired,
+  onFileNameChange: PropTypes.func.isRequired,
 };
 
 export default BrowseFile;
