@@ -10,8 +10,8 @@ class TabDataFrame {
   }
 
   textToJson(text) {
-    // Remove control characters
-    const sanitizedText = text.replace(/[\x00-\x1F\x7F]/g, '');
+    // Remove control characters except for newline
+    const sanitizedText = text.replace(/[\x00-\x09\x0B-\x1F\x7F]/g, '');
     const rows = sanitizedText.split('\n');
     const headers = rows[0].split(',');
     const data = rows.slice(1).map(row => {
