@@ -14,6 +14,11 @@ class TabDataFrame {
     this.df.print();
   }
 
+
+  getHeaders() {
+    return this.df.$columns;
+  }
+
   waitUntilReadyStateIsOk() {
     return new Promise((resolve, reject) => {
       this.reader.onload = () => {
