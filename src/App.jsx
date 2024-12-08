@@ -12,9 +12,10 @@ function App() {
   const [yAxisHeaders, setYAxisHeaders] = useState([]);
   const [tabDataFrame, setTabDataFrame] = useState(null);
 
-  const handleFileNameChange = (file) => {
-    var dataFrame = new TabDataFrame(file);
-    var dfheaders = dataFrame.df.$columns
+  const handleFileNameChange = async (file) => {
+    const dataFrame = new TabDataFrame(file);
+    await dataFrame.initialize(); // Wait for initialization to complete
+    const dfheaders = dataFrame.df.$columns;
     setTabDataFrame(dataFrame);
     setHeaders(dfheaders);
   };
