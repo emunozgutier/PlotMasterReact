@@ -3,10 +3,21 @@ class TabDataFrame {
     this.file = file;
     this.reader = new FileReader();
     this.reader.readAsText(file);
+    this.waitUntilReadyStateIsOk();
     this.file_text = this.reader.result;
     this.file_json = this.textToJson(this.file_text);
     this.df = this.jsonToDataFrame(this.file_json);
     this.df.print()
+  }
+
+  waitUntilReadyStateIsOk() {
+    return new Promise((resolve, reject) => {
+      this.reader.onload = () => {
+        if (this.reader.readyState === 2) {
+          resolve();
+        }
+      };
+    });
   }
 
   textToJson(text) {
@@ -35,12 +46,13 @@ class TabDataFrame {
 
 
   getRawData() {
-    return this.dataFrame;
+    return this.df.$data;
   }
 
   getFilteredData(xAxisHeaders, yAxisHeaders) {
     const selectedHeaders = [...xAxisHeaders, ...yAxisHeaders];
-    return this.dataFrame.loc({ columns: selectedHeaders });
+    const ans = this.df.loc({ columns: selectedHeaders });
+    return ans.$data;
   }
 }
 

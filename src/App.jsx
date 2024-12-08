@@ -13,11 +13,10 @@ function App() {
   const [tabDataFrame, setTabDataFrame] = useState(null);
 
   const handleFileNameChange = (file) => {
-    const dataFrame = new TabDataFrame(file);
+    var dataFrame = new TabDataFrame(file);
+    var dfheaders = dataFrame.df.$columns
     setTabDataFrame(dataFrame);
-    dataFrame.loadData().then(() => {
-      setHeaders(dataFrame.getRawData().columns);
-    });
+    setHeaders(dfheaders);
   };
 
   return (
