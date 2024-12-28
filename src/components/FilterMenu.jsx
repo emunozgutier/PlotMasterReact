@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortAlphaDown, faBan } from '@fortawesome/free-solid-svg-icons';
 
-function FilterMenu({ headers }) {
+function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
   const [yAxis, setYAxis] = useState([]);
   const [xAxis, setXAxis] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,10 +21,13 @@ function FilterMenu({ headers }) {
   const handleHeaderClick = (header) => {
     if (selectedBlock === 'y-axis') {
       if (!yAxis.includes(header)) {
-        setYAxis([...yAxis, header]);
+        const newYAxis = [...yAxis, header];
+        setYAxis(newYAxis);
+        onYAxisChange(newYAxis);
       }
     } else if (selectedBlock === 'x-axis') {
       setXAxis(header);
+      onXAxisChange([header]);
     }
   };
 
@@ -78,6 +81,8 @@ function FilterMenu({ headers }) {
 
 FilterMenu.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onXAxisChange: PropTypes.func.isRequired,
+  onYAxisChange: PropTypes.func.isRequired,
 };
 
 export default FilterMenu;
