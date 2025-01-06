@@ -9,7 +9,7 @@ function TabTable({ tabDataFrame, view, xAxisHeaders, yAxisHeaders }) {
     console.log('Filtered Data:', data);
   }
 
-  const headers = tabDataFrame.getHeaders();
+  const headers = [...xAxisHeaders, ...yAxisHeaders];
 
   if (view === 'raw' || view === 'filtered') {
     return (

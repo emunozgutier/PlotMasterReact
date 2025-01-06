@@ -71,6 +71,10 @@ class TabDataFrame {
     const ans = this.df.loc({ columns: selectedHeaders });
     return ans.$data;
   }
+
+  getColumn(columnName) {
+    return this.df[columnName];
+  }
 }
 
 export default TabDataFrame;
