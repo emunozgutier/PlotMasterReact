@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './App.css';
 import BrowseFile from './components/BrowseFile';
-import WorkSpaceManager from "./components/WorkSpaceManager.jsx";
+import WorkSpaceManager from "./components/WorkSpaceManager";
 import TabDataFrame from './components/TabDataFrame';
 
 function App() {
-  const [tabDataFrame, setTabDataFrame] = useState(null);
   const [headers, setHeaders] = useState([]);
+  const [tabDataFrame, setTabDataFrame] = useState(null);
 
   const handleFileNameChange = async (file) => {
     const dataFrame = new TabDataFrame(file);
@@ -23,7 +23,7 @@ function App() {
       </header>
       <div className="main-content">
         <WorkSpaceManager headers={headers}
-            tabDataFrame={tabDataFrame}
+                   tabDataFrame={tabDataFrame}
         />
     </div>
     </div>
