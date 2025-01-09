@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import './App.css';
 import BrowseFile from './components/BrowseFile';
-import WorkSpace from "./components/WorkSpace.jsx";
-import TabManager from './components/TabManager';
+import WorkSpaceManager from "./components/WorkSpaceManager.jsx";
 import TabDataFrame from './components/TabDataFrame';
 
 function App() {
-  const [headers, setHeaders] = useState([]);
-  const [xAxisHeaders, setXAxisHeaders] = useState([]);
-  const [yAxisHeaders, setYAxisHeaders] = useState([]);
   const [tabDataFrame, setTabDataFrame] = useState(null);
+  const [headers, setHeaders] = useState([]);
 
   const handleFileNameChange = async (file) => {
     const dataFrame = new TabDataFrame(file);
@@ -25,12 +22,8 @@ function App() {
         <BrowseFile onFileNameChange={handleFileNameChange} />
       </header>
       <div className="main-content">
-        <WorkSpace headers={headers}
-                   xAxisHeaders={xAxisHeaders}
-                   setXAxisHeaders={setXAxisHeaders}
-                   yAxisHeaders={yAxisHeaders}
-                   setYAxisHeaders={setYAxisHeaders}
-                   tabDataFrame={tabDataFrame}
+        <WorkSpaceManager headers={headers}
+            tabDataFrame={tabDataFrame}
         />
     </div>
     </div>

@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 import FilterMenu from './FilterMenu';
 import TabManager from './TabManager';
+import {useState} from "react";
 
-function WorkSpace({headers, xAxisHeaders, setXAxisHeaders, yAxisHeaders, setYAxisHeaders, tabDataFrame}) {
+function WorkSpace({headers, tabDataFrame}) {
+  const [xAxisHeaders, setXAxisHeaders] = useState([]);
+  const [yAxisHeaders, setYAxisHeaders] = useState([]);
+
   return (
     <>
       <FilterMenu headers={headers} onXAxisChange={setXAxisHeaders} onYAxisChange={setYAxisHeaders} />
@@ -12,12 +16,8 @@ function WorkSpace({headers, xAxisHeaders, setXAxisHeaders, yAxisHeaders, setYAx
 }
 
 WorkSpace.propTypes = {
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setXAxisHeaders: PropTypes.func.isRequired,
-  setYAxisHeaders: PropTypes.func.isRequired,
-  xAxisHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
-  yAxisHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
   tabDataFrame: PropTypes.object,
+  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default WorkSpace;
