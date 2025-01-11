@@ -8,16 +8,22 @@ function WorkSpace({headers, tabDataFrame}) {
   const [yAxisHeaders, setYAxisHeaders] = useState([]);
 
   return (
-    <>
-      <FilterMenu headers={headers} onXAxisChange={setXAxisHeaders} onYAxisChange={setYAxisHeaders} />
-      {tabDataFrame && <TabManager tabDataFrame={tabDataFrame} xAxisHeaders={xAxisHeaders} yAxisHeaders={yAxisHeaders} />}
-    </>
+      <div className="row border">
+        <div className="col-4">
+          <FilterMenu  headers={headers} onXAxisChange={setXAxisHeaders}
+                      onYAxisChange={setYAxisHeaders}/>
+        </div>
+        <div className="col-8">
+          {tabDataFrame && <TabManager tabDataFrame={tabDataFrame} xAxisHeaders={xAxisHeaders}
+                                       yAxisHeaders={yAxisHeaders}/>}
+        </div>
+      </div>
   );
 }
 
-WorkSpace.propTypes = {
-  tabDataFrame: PropTypes.object,
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
+        WorkSpace.propTypes = {
+        tabDataFrame: PropTypes.object,
+        headers: PropTypes.arrayOf(PropTypes.string).isRequired,
+      };
 
-export default WorkSpace;
+        export default WorkSpace;

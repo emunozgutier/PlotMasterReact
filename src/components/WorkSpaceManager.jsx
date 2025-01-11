@@ -36,7 +36,7 @@ function WorkSpaceManager({ headers, tabDataFrame }) {
         ))}
         <button onClick={addWorkspace} className="btn btn-secondary">+</button>
       </div>
-      <div className="tab-content">
+      <div className="tab-content container border">
         {workspaces.map(ws => (
           ws.id === activeWorkspaceId && (
             <WorkSpace

@@ -32,12 +32,12 @@ function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
   };
 
   return (
-    <div className="filter-menu">
+    <div className="filter-menu container border">
       <h2>Filter Menu</h2>
-      <div className="filter-content">
-        <div className="headers">
-          <h3>CSV Data Headers</h3>
+      <div className="filter-content row">
+        <div className="headers col-6">
           <input
+              className="container"
             type="text"
             placeholder="Search headers..."
             value={searchTerm}
@@ -52,9 +52,9 @@ function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
             ))}
           </ul>
         </div>
-        <div className="filter-blocks">
+        <div className="filter-blocks col-6">
           <div
-            className={`filter-block ${selectedBlock === 'y-axis' ? 'selected' : ''}`}
+            className={`h-50 filter-block ${selectedBlock === 'y-axis' ? 'selected' : ''}`}
             onClick={() => setSelectedBlock('y-axis')}
           >
             <label htmlFor="y-axis">Y-Axis:</label>
@@ -65,7 +65,7 @@ function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
             </select>
           </div>
           <div
-            className={`filter-block ${selectedBlock === 'x-axis' ? 'selected' : ''}`}
+            className={`h-50 filter-block ${selectedBlock === 'x-axis' ? 'selected' : ''}`}
             onClick={() => setSelectedBlock('x-axis')}
           >
             <label htmlFor="x-axis">X-Axis:</label>
