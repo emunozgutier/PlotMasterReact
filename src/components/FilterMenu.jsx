@@ -52,7 +52,7 @@ function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
               <label htmlFor="y-axis">Y-Axis:</label>
             </div>
             <div className="row">
-              <select id="y-axis" value={yAxis} multiple>
+              <select className="w-100" id="y-axis" value={yAxis} multiple>
                 {yAxis.map((header, index) => (
                     <option key={index} value={header}>{header}</option>
                 ))}
@@ -67,7 +67,7 @@ function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
             <label htmlFor="x-axis">X-Axis:</label>
           </div>
           <div className="row">
-            <select id="x-axis" value={xAxis}>
+            <select className="w-100" id="x-axis" value={xAxis}>
               {xAxis && <option value={xAxis}>{xAxis}</option>}
             </select>
           </div>

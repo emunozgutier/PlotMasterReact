@@ -13,3 +13,7 @@ body {
     width: 100%;
     overflow: hidden;
 }
+
+.selected {
+    background-color: #007bff;
+}
