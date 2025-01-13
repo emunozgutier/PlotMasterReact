@@ -17,11 +17,11 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <header>
+    <div className="app-container container h-100 ">
+      <div className="container m-2">
         <BrowseFile onFileNameChange={handleFileNameChange} />
-      </header>
-      <div className="main-content">
+      </div>
+      <div className="main-content container border m-2 h-100">
         <WorkSpaceManager headers={headers}
                    tabDataFrame={tabDataFrame}
         />

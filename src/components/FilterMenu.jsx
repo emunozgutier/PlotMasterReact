@@ -32,54 +32,52 @@ function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
   };
 
   return (
-    <div className="filter-menu">
-      <h2>Filter Menu</h2>
-      <div className="filter-content">
-        <div className="headers">
-          <h3>CSV Data Headers</h3>
-          <input
-            type="text"
-            placeholder="Search headers..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button onClick={() => setIsAlphabetical(!isAlphabetical)}>
-            <FontAwesomeIcon icon={isAlphabetical ? faBan : faSortAlphaDown} />
-          </button>
-          <ul>
-            {displayedHeaders.map((header, index) => (
-              <li key={index} onClick={() => handleHeaderClick(header)}>{header}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="filter-blocks">
-          <div
-            className={`filter-block ${selectedBlock === 'y-axis' ? 'selected' : ''}`}
+    <div className="filter-menu row h-100 border">
+      <div className="headers col-6">
+        <button onClick={() => setIsAlphabetical(!isAlphabetical)}>
+          <FontAwesomeIcon icon={isAlphabetical ? faBan : faSortAlphaDown} />
+        </button>
+        <ul>
+          {displayedHeaders.map((header, index) => (
+            <li key={index} onClick={() => handleHeaderClick(header)}>{header}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="filter-blocks col-6">
+        <div
+            className={`h-25 container filter-block ${selectedBlock === 'y-axis' ? 'selected' : ''}`}
             onClick={() => setSelectedBlock('y-axis')}
-          >
-            <label htmlFor="y-axis">Y-Axis:</label>
-            <select id="y-axis" value={yAxis} multiple>
-              {yAxis.map((header, index) => (
-                <option key={index} value={header}>{header}</option>
-              ))}
-            </select>
-          </div>
-          <div
-            className={`filter-block ${selectedBlock === 'x-axis' ? 'selected' : ''}`}
+        >
+            <div className="row">
+              <label htmlFor="y-axis">Y-Axis:</label>
+            </div>
+            <div className="row">
+              <select id="y-axis" value={yAxis} multiple>
+                {yAxis.map((header, index) => (
+                    <option key={index} value={header}>{header}</option>
+                ))}
+              </select>
+            </div>
+        </div>
+        <div
+            className={`h-25 container filter-block ${selectedBlock === 'x-axis' ? 'selected' : ''}`}
             onClick={() => setSelectedBlock('x-axis')}
-          >
+        >
+          <div className="row">
             <label htmlFor="x-axis">X-Axis:</label>
+          </div>
+          <div className="row">
             <select id="x-axis" value={xAxis}>
               {xAxis && <option value={xAxis}>{xAxis}</option>}
             </select>
           </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+      );
+      }
 
-FilterMenu.propTypes = {
+      FilterMenu.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   onXAxisChange: PropTypes.func.isRequired,
   onYAxisChange: PropTypes.func.isRequired,
