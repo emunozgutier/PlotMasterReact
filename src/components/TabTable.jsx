@@ -43,13 +43,9 @@ function TabTable({ tabDataFrame, view, xAxisHeaders, yAxisHeaders }) {
 TabTable.propTypes = {
   tabDataFrame: PropTypes.object.isRequired,
   view: PropTypes.string.isRequired,
-  xAxisHeaders: PropTypes.arrayOf(PropTypes.string),
+  xAxisHeaders: PropTypes.string,
   yAxisHeaders: PropTypes.arrayOf(PropTypes.string),
 };
 
-TabTable.defaultProps = {
-  xAxisHeaders: [],
-  yAxisHeaders: [],
-};
 
 export default TabTable;

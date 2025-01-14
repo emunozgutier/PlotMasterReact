@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function TabPlot({ tabDataFrame, xAxisHeaders, yAxisHeaders }) {
   useEffect(() => {
-    const xdata = tabDataFrame.getColumn(xAxisHeaders[0]);
+    const xdata = tabDataFrame.getColumn(xAxisHeaders);
     const data = yAxisHeaders.map((yAxisHeader) => {
       const ydata = tabDataFrame.getColumn(yAxisHeader);
       return {
@@ -27,7 +27,7 @@ function TabPlot({ tabDataFrame, xAxisHeaders, yAxisHeaders }) {
 
 TabPlot.propTypes = {
   tabDataFrame: PropTypes.object.isRequired,
-  xAxisHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  xAxisHeaders: PropTypes.string,
   yAxisHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
