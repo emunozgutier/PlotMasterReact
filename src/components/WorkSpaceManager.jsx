@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 function WorkSpaceManager({ headers, tabDataFrame }) {
     const [workspaces, setWorkspaces] = useState([
-        { id: 1, xAxisHeaders: [], yAxisHeaders: [] }
+        { id: 1, xAxisHeaders: '', yAxisHeaders: [] }
     ]);
     const [activeWorkspaceId, setActiveWorkspaceId] = useState(1);
 
     const addWorkspace = () => {
         const newId = workspaces.length ? workspaces[workspaces.length - 1].id + 1 : 1;
-        setWorkspaces([...workspaces, { id: newId, xAxisHeaders: [], yAxisHeaders: [] }]);
+        setWorkspaces([...workspaces, { id: newId, xAxisHeaders: '', yAxisHeaders: [] }]);
         setActiveWorkspaceId(newId);
     };
 

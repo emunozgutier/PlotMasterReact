@@ -27,7 +27,7 @@ function TabManager({ tabDataFrame, xAxisHeaders, yAxisHeaders }) {
 
 TabManager.propTypes = {
   tabDataFrame: PropTypes.object.isRequired,
-  xAxisHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  xAxisHeaders: PropTypes.string.isRequired,
   yAxisHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 

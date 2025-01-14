@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortAlphaDown, faBan } from '@fortawesome/free-solid-svg-icons';
 
-function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
-  const [yAxis, setYAxis] = useState([]);
-  const [xAxis, setXAxis] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+function FilterMenu({ headers, yAxis, setYAxis, xAxis, setXAxis}) {
   const [isAlphabetical, setIsAlphabetical] = useState(false);
   const [selectedBlock, setSelectedBlock] = useState(null);
 
-  const filteredHeaders = headers.filter(header =>
-    header.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredHeaders = headers;
 
   const displayedHeaders = isAlphabetical
     ? [...filteredHeaders].sort()
@@ -23,11 +18,9 @@ function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
       if (!yAxis.includes(header)) {
         const newYAxis = [...yAxis, header];
         setYAxis(newYAxis);
-        onYAxisChange(newYAxis);
       }
     } else if (selectedBlock === 'x-axis') {
       setXAxis(header);
-      onXAxisChange([header]);
     }
   };
 
@@ -77,10 +70,12 @@ function FilterMenu({ headers, onXAxisChange, onYAxisChange }) {
       );
       }
 
-      FilterMenu.propTypes = {
+FilterMenu.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onXAxisChange: PropTypes.func.isRequired,
-  onYAxisChange: PropTypes.func.isRequired,
+  xAxis: PropTypes.string.isRequired,
+  yAxis: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setXAxis: PropTypes.func.isRequired,
+  setYAxis: PropTypes.func.isRequired,
 };
 
 export default FilterMenu;
