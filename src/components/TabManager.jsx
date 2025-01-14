@@ -15,7 +15,6 @@ function TabManager({ tabDataFrame, xAxisHeaders, yAxisHeaders }) {
       <h2>Data Display</h2>
       <div className="tabs">
         <button onClick={() => setActiveTab('raw')} className={`btn ${activeTab === 'raw' ? 'btn-primary' : 'btn-secondary'}`}>Raw Data</button>
-        <button onClick={() => setActiveTab('filtered')} className={`btn ${activeTab === 'filtered' ? 'btn-primary' : 'btn-secondary'}`}>Filtered Data</button>
         <button onClick={() => setActiveTab('plotted')} className={`btn ${activeTab === 'plotted' ? 'btn-primary' : 'btn-secondary'}`}>Plotted Data</button>
       </div>
       <div className="tab-content">

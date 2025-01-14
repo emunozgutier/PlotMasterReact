@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortAlphaDown, faBan } from '@fortawesome/free-solid-svg-icons';
 
-function FilterMenu({ headers, yAxis, setYAxis, xAxis, setXAxis}) {
+function FilterMenu({ headers, plotType, setPlotType, yAxis, setYAxis, xAxis, setXAxis }) {
   const [isAlphabetical, setIsAlphabetical] = useState(false);
   const [selectedBlock, setSelectedBlock] = useState(null);
 
@@ -38,23 +38,23 @@ function FilterMenu({ headers, yAxis, setYAxis, xAxis, setXAxis}) {
       </div>
       <div className="filter-blocks col-6">
         <div
-            className={`h-25 container filter-block ${selectedBlock === 'y-axis' ? 'selected' : ''}`}
-            onClick={() => setSelectedBlock('y-axis')}
+          className={`h-25 container filter-block ${selectedBlock === 'y-axis' ? 'selected' : ''}`}
+          onClick={() => setSelectedBlock('y-axis')}
         >
-            <div className="row">
-              <label htmlFor="y-axis">Y-Axis:</label>
-            </div>
-            <div className="row">
-              <select className="w-100" id="y-axis" value={yAxis} multiple>
-                {yAxis.map((header, index) => (
-                    <option key={index} value={header}>{header}</option>
-                ))}
-              </select>
-            </div>
+          <div className="row">
+            <label htmlFor="y-axis">Y-Axis:</label>
+          </div>
+          <div className="row">
+            <select className="w-100" id="y-axis" value={yAxis} multiple>
+              {yAxis.map((header, index) => (
+                <option key={index} value={header}>{header}</option>
+              ))}
+            </select>
+          </div>
         </div>
         <div
-            className={`h-25 container filter-block ${selectedBlock === 'x-axis' ? 'selected' : ''}`}
-            onClick={() => setSelectedBlock('x-axis')}
+          className={`h-25 container filter-block ${selectedBlock === 'x-axis' ? 'selected' : ''}`}
+          onClick={() => setSelectedBlock('x-axis')}
         >
           <div className="row">
             <label htmlFor="x-axis">X-Axis:</label>
@@ -64,11 +64,25 @@ function FilterMenu({ headers, yAxis, setYAxis, xAxis, setXAxis}) {
               {xAxis && <option value={xAxis}>{xAxis}</option>}
             </select>
           </div>
+        </div>
+        <div
+          className={`h-25 container filter-block ${selectedBlock === 'plot-type' ? 'selected' : ''}`}
+          onClick={() => setSelectedBlock('plot-type')}
+        >
+          <div className="row">
+            <label htmlFor="plot-type">Plot Type:</label>
+          </div>
+          <div className="row">
+            <select className="w-100" id="plot-type" value={plotType} onChange={(e) => setPlotType(e.target.value)}>
+              <option value="scatter">Scatter</option>
+              <option value="box">Box</option>
+            </select>
           </div>
         </div>
       </div>
-      );
-      }
+    </div>
+  );
+}
 
 FilterMenu.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -76,6 +90,8 @@ FilterMenu.propTypes = {
   yAxis: PropTypes.arrayOf(PropTypes.string).isRequired,
   setXAxis: PropTypes.func.isRequired,
   setYAxis: PropTypes.func.isRequired,
+  plotType: PropTypes.string.isRequired,
+  setPlotType: PropTypes.func.isRequired,
 };
 
 export default FilterMenu;

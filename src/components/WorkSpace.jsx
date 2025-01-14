@@ -3,7 +3,7 @@ import FilterMenu from './FilterMenu';
 import TabManager from './TabManager';
 import {useState} from "react";
 
-function WorkSpace({headers, xAxisHeaders, setXAxisHeaders, yAxisHeaders, setYAxisHeaders, tabDataFrame}) {
+function WorkSpace({headers, plotType, setPlotType, xAxisHeaders, setXAxisHeaders, yAxisHeaders, setYAxisHeaders, tabDataFrame}) {
   // const [xAxisHeaders, setXAxisHeaders] = useState([]);
   // const [yAxisHeaders, setYAxisHeaders] = useState([]);
 
@@ -16,6 +16,8 @@ function WorkSpace({headers, xAxisHeaders, setXAxisHeaders, yAxisHeaders, setYAx
                   setYAxis={setYAxisHeaders}
                   xAxis={xAxisHeaders}
                   setXAxis={setXAxisHeaders}
+                  plotType={plotType}
+                  setPlotType={setPlotType}
               />
           </div>
 
@@ -39,6 +41,8 @@ WorkSpace.propTypes = {
     setXAxisHeaders: PropTypes.func.isRequired,
     yAxisHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
     setYAxisHeaders: PropTypes.func.isRequired,
+    plotType: PropTypes.string.isRequired,
+    setPlotType: PropTypes.func.isRequired,
 
 };
 

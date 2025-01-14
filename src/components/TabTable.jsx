@@ -14,7 +14,7 @@ function TabTable({ tabDataFrame, view, xAxisHeaders, yAxisHeaders }) {
   if (view === 'raw' || view === 'filtered') {
     return (
       <div className="table-container">
-        <table className="table table-hover">
+        <table className="table table-hover table-responsive ">
           <thead>
             <tr>
               {headers.map((header, index) => (
